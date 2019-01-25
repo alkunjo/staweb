@@ -21,7 +21,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import MultilineChartIcon from "@material-ui/icons/MultilineChart";
 import SearchIcon from "@material-ui/icons/Search";
 import { Switch, Redirect, Route, NavLink } from "react-router-dom";
-import styles from "./theme";
+import styles from "../components/theme";
 
 import Dashboard from "./Dashboard";
 import Chart from "./Chart";

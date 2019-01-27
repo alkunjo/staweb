@@ -15,7 +15,7 @@ import cache from "./cache";
 import store from "./store";
 import { setError } from "./action";
 
-const GraphqlUrl = "localhost:9999";
+const GraphqlUrl = "http://localhost:9999";
 
 const httpLink = new CreateHttpLink({
   uri: GraphqlUrl

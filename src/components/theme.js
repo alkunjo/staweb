@@ -73,6 +73,44 @@ const styles = theme => ({
   },
   h5: {
     marginBottom: theme.spacing.unit * 2
+  },
+  glabsSuggestion: {
+    position: "absolute",
+    width: "100%",
+    zIndex: "8000",
+    overflowY: "auto",
+    maxHeight: "300px"
+  },
+  containerAutocomplete: {
+    flexGrow: 1,
+    position: "relative"
+  },
+  rootAutocomplete: {
+    flexGrow: 1,
+    maxHeight: 250
+  },
+  inputRootAutocomplete: {
+    flexWrap: "wrap"
+  },
+  inputAutocomplete: {
+    width: "auto",
+    flexGrow: 1
+  },
+  glabInputField: {
+    fontSize: "16px"
+  },
+  glabInputLabel: {
+    fontSize: "16px"
+  },
+  listTextName: {
+    marginBottom: "5px",
+    fontSize: "17px",
+    fontWeight: "bold"
+  },
+  listTextSecondaryDesc: {
+    fontSize: "14px",
+    color: "rgba(0,0,0,0.7)",
+    width: "90%"
   }
 });
 export default styles;

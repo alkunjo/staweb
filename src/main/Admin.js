@@ -24,7 +24,7 @@ import { Switch, Redirect, Route, NavLink } from "react-router-dom";
 import styles from "../components/theme";
 
 import Dashboard from "./Dashboard";
-import Chart from "./Chart";
+import Charting from "./Charting";
 import Screener from "./Screener";
 
 class Admin extends React.Component {
@@ -70,7 +70,7 @@ class Admin extends React.Component {
             </IconButton>
             <Typography
               component="h1"
-              variant="h6"
+              variant="title"
               color="inherit"
               noWrap
               className={classes.title}
@@ -130,7 +130,7 @@ class Admin extends React.Component {
               path={`${match.path}dashboard`}
               component={Dashboard}
             />
-            <Route exact path={`${match.path}charting`} component={Chart} />
+            <Route exact path={`${match.path}charting`} component={Charting} />
             <Route exact path={`${match.path}screener`} component={Screener} />
           </Switch>
         </main>

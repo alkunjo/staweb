@@ -1,7 +1,7 @@
 const checkUntraded = eod => {
   if (eod.openprice !== 0) return eod.openprice;
   else if (eod.firsttrade !== 0) return eod.firsttrade;
-  return eod.close;
+  else return eod.close - eod.change;
 };
 export const eodParser = eods => {
   return eods.map(x => ({

@@ -8,8 +8,9 @@ import randomstring from "randomstring";
 import { ApolloConsumer } from "react-apollo";
 import { gqlEmiten } from "../graphql";
 import moment from "moment";
-import { TypeChooser } from "react-stockcharts/lib/helper";
-import CandleStickChart from "../components/candlestick";
+// import CandleStickChart from "../components/candlestick";
+import CandleStickChart from "../components/candlesticknew";
+import { eodParser } from "../helper";
 class Charting extends React.Component {
   constructor(props) {
     super(props);
@@ -44,32 +45,30 @@ class Charting extends React.Component {
   render() {
     const { classes } = this.props;
     const { autoOptions, autoKey, emitens } = this.state;
-    // console.log("emitens: ", emitens);
     return (
-      <Paper style={{ padding: "15px" }}>
+      <div>
         <ApolloConsumer>
           {apolloClient => {
             this.apolloClient = apolloClient;
             return null;
           }}
         </ApolloConsumer>
-        <Autocomplete
-          key={autoKey}
-          options={autoOptions}
-          classes={classes}
-          onSelect={this.selectedChange}
-        />
+        <Paper style={{ padding: "15px" }}>
+          <Autocomplete
+            autoFocus
+            key={autoKey}
+            options={autoOptions}
+            classes={classes}
+            onSelect={this.selectedChange}
+          />
+        </Paper>
 
-        {emitens.length > 0 && (
-          <div>
-            {emitens.map(x => (
-              <TypeChooser key={x.code}>
-                {type => <CandleStickChart type={type} data={x} />}
-              </TypeChooser>
-            ))}
-          </div>
-        )}
-      </Paper>
+        {emitens.map(x => (
+          <Paper key={x.code} style={{ padding: "15px", marginTop: "10px" }}>
+            <CandleStickChart code={x.code} data={eodParser(x.eods)} />
+          </Paper>
+        ))}
+      </div>
     );
   }
 }

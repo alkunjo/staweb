@@ -37,8 +37,8 @@ const getSuggestions = (value, suggestions) => {
   return inputLength === 0
     ? []
     : suggestions.filter(
-      s => s.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
-    );
+        s => s.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
+      );
 };
 
 const renderSuggestion = ({
@@ -91,7 +91,8 @@ class Autocomplete extends React.Component {
       label,
       error,
       helperText,
-      options
+      options,
+      autoFocus
     } = this.props;
     return (
       <Downshift
@@ -112,42 +113,43 @@ class Autocomplete extends React.Component {
           clearSelection,
           clearItems
         }) => (
-            <div className={classes.containerAutocomplete}>
-              {renderInput({
-                fullWidth: true,
-                classes,
-                InputProps: getInputProps({
-                  placeholder,
-                  onChange: e => {
-                    if (!e.target.value) {
-                      clearSelection();
-                      clearItems();
-                    }
+          <div className={classes.containerAutocomplete}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                placeholder,
+                onChange: e => {
+                  if (!e.target.value) {
+                    clearSelection();
+                    clearItems();
                   }
-                }),
-                label,
-                error,
-                helperText
-              })}
-              <div {...getMenuProps()}>
-                {isOpen && options && (
-                  <Paper className={classes.glabsSuggestion}>
-                    {getSuggestions(inputValue, options).map(
-                      (suggestion, index) =>
-                        renderSuggestion({
-                          suggestion,
-                          index,
-                          itemProps: getItemProps({ item: suggestion.label }),
-                          highlightedIndex,
-                          selectedItem,
-                          classes
-                        })
-                    )}
-                  </Paper>
-                )}
-              </div>
+                }
+              }),
+              label,
+              error,
+              helperText,
+              autoFocus
+            })}
+            <div {...getMenuProps()}>
+              {isOpen && options && (
+                <Paper className={classes.glabsSuggestion}>
+                  {getSuggestions(inputValue, options).map(
+                    (suggestion, index) =>
+                      renderSuggestion({
+                        suggestion,
+                        index,
+                        itemProps: getItemProps({ item: suggestion.label }),
+                        highlightedIndex,
+                        selectedItem,
+                        classes
+                      })
+                  )}
+                </Paper>
+              )}
             </div>
-          )}
+          </div>
+        )}
       </Downshift>
     );
   }

@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const gqlEmitens = gql`
-  query getEmitens($startDate: Date, $endDate: Date) {
-    emitens(startDate: $startDate, endDate: $endDate) {
+  query getEmitens($startDate: Date, $endDate: Date, $syariah: Boolean) {
+    emitens(startDate: $startDate, endDate: $endDate, syariah: $syariah) {
       id
       name
       code

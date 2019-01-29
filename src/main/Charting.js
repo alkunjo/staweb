@@ -9,7 +9,8 @@ import { ApolloConsumer } from "react-apollo";
 import { gqlEmiten } from "../graphql";
 import moment from "moment";
 // import CandleStickChart from "../components/candlestick";
-import CandleStickChart from "../components/candlesticknew";
+// import CandleStickChart from "../components/candlestickmousepointer";
+import CandleStickChart from "../components/candlestickdark";
 import { eodParser } from "../helper";
 class Charting extends React.Component {
   constructor(props) {

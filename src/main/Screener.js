@@ -6,6 +6,7 @@ import { ApolloConsumer } from "react-apollo";
 import { gqlEmitens } from "../graphql";
 import moment from "moment";
 import Table from "../components/table";
+import { whichPattern } from "../helper";
 class Screener extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,7 @@ class Screener extends React.Component {
       variables: {
         startDate: "2018-01-01",
         endDate: moment(new Date()).format("YYYY-MM-DD"),
-        syariah: true
+        syariah: false
       }
     });
     const formattedTable = emitens.map(x => ({
@@ -27,18 +28,20 @@ class Screener extends React.Component {
       name: x.name,
       sector: x.sector,
       listingdate: x.listingdate,
-      shares: x.shares
+      shares: x.shares,
+      pattern: whichPattern(x.eods)
     }));
     const rows = [
       { id: "code", disablePadding: false, label: "Code" },
       { id: "name", disablePadding: false, label: "Name" },
       { id: "sector", disablePadding: false, label: "Sector" },
-      { id: "shares", numeric: true, disablePadding: false, label: "Shares" }
+      { id: "shares", numeric: true, disablePadding: false, label: "Shares" },
+      { id: "pattern", numeric: false, disablePadding: false, label: "Pattern" }
     ];
     this.setState({ emitens, formattedTable, rows });
   }
   render() {
-    const { formattedTable, emitens, rows } = this.state;
+    const { formattedTable, rows } = this.state;
     return (
       <Paper>
         <ApolloConsumer>

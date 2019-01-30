@@ -123,7 +123,7 @@ class EnhancedTable extends React.Component {
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
-                      key={n.id}
+                      key={n.code}
                       selected={isSelected}
                     >
                       {allowCheck && (
@@ -137,6 +137,7 @@ class EnhancedTable extends React.Component {
                       </TableCell>
                       <TableCell align="right">{n.sector}</TableCell>
                       <TableCell align="right">{n.shares}</TableCell>
+                      <TableCell align="right">{n.pattern}</TableCell>
                     </TableRow>
                   );
                 })}

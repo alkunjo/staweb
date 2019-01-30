@@ -1,7 +1,44 @@
+import { createMuiTheme } from "@material-ui/core/styles";
+import blue from "@material-ui/core/colors/blue";
+import indigo from "@material-ui/core/colors/indigo";
+
+import red from "@material-ui/core/colors/red";
 const drawerWidth = 240;
-const styles = theme => ({
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: indigo,
+    error: red,
+    gray: "#aaaaaa"
+  },
+  typography: {
+    fontSize: "16"
+  }
+});
+export const styles = theme => ({
   root: {
+    display: "flex",
+    position: "relative",
+    flexGrow: 1
+  },
+  loading: {
+    width: "100vw",
+    height: "100vh",
+    background: "rgba(0,0,0,0.85)",
+    zIndex: "1300",
+    position: "absolute",
+    alignItems: "center",
     display: "flex"
+  },
+  loadingCenter: {
+    width: "100vw",
+    textAlign: "center"
+  },
+  preloader: {
+    zIndex: "10000 !important",
+    margin: theme.spacing.unit * 2,
+    textAlign: "center"
   },
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
@@ -113,4 +150,4 @@ const styles = theme => ({
     width: "90%"
   }
 });
-export default styles;
+// export default { styles, theme };

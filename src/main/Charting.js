@@ -3,7 +3,9 @@ import Paper from "@material-ui/core/Paper";
 import Autocomplete from "../components/autocomplete";
 import { withStyles } from "@material-ui/core/styles";
 import dataEmitens from "../emitenfix.json";
-import styles from "../components/theme";
+import { styles } from "../components/theme";
+import { connect } from "react-redux";
+import { closeLoader, openLoader } from "../action";
 import randomstring from "randomstring";
 import { ApolloConsumer } from "react-apollo";
 import { gqlEmiten } from "../graphql";
@@ -23,7 +25,9 @@ class Charting extends React.Component {
   }
 
   selectedChange = async val => {
+    const { openLoader } = this.props;
     const { emitens } = this.state;
+    openLoader();
     const {
       data: { emiten }
     } = await this.apolloClient.query({
@@ -34,7 +38,7 @@ class Charting extends React.Component {
         endDate: moment(new Date()).format("YYYY-MM-DD")
       }
     });
-    console.log("emiten.eods: ", emiten.eods);
+
     const newEmitens = [...emitens];
     newEmitens.push(emiten);
     this.setState({
@@ -44,8 +48,9 @@ class Charting extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, closeLoader } = this.props;
     const { autoOptions, autoKey, emitens } = this.state;
+    closeLoader();
     return (
       <div>
         <ApolloConsumer>
@@ -73,5 +78,14 @@ class Charting extends React.Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  openLoader: () => dispatch(openLoader()),
+  closeLoader: () => dispatch(closeLoader())
+});
 
-export default withStyles(styles)(Charting);
+const compo = withStyles(styles)(Charting);
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(compo);

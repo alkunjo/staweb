@@ -10,7 +10,7 @@ import {
   MenuItem,
   ListItemText
 } from "@material-ui/core";
-import styles from "../components/theme";
+import { styles } from "../components/theme";
 
 const renderInput = inputProps => {
   const { InputProps, classes, ref, ...other } = inputProps;

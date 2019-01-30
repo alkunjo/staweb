@@ -11,6 +11,7 @@ export const gqlEmitens = gql`
       shares
       createdat
       updatedat
+      pattern
       eods {
         id
         tradingdate

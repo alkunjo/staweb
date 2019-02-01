@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { green, amber } from "@material-ui/core/colors";
 
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";

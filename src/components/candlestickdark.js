@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { green, amber } from "@material-ui/core/colors";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
 
@@ -24,7 +24,7 @@ import {
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import {
   OHLCTooltip,
-  MovingAverageTooltip,
+  // MovingAverageTooltip,
   BollingerBandTooltip,
   StochasticTooltip,
   GroupTooltip
@@ -139,6 +139,7 @@ class CandleStickChartWithDarkTheme extends React.Component {
         xAccessor={xAccessor}
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
+        style={{ backgroundColor: "#303030" }}
       >
         <Chart
           id={1}
@@ -175,9 +176,9 @@ class CandleStickChartWithDarkTheme extends React.Component {
           />
 
           <CandlestickSeries
-            stroke={d => (d.close > d.open ? "#6BA583" : "#DB0000")}
-            wickStroke={d => (d.close > d.open ? "#6BA583" : "#DB0000")}
-            fill={d => (d.close > d.open ? "#6BA583" : "#DB0000")}
+            stroke={d => (d.close > d.open ? green[600] : amber[700])}
+            wickStroke={d => (d.close > d.open ? green[600] : amber[700])}
+            fill={d => (d.close > d.open ? green[600] : amber[700])}
           />
 
           <LineSeries yAccessor={ema20.accessor()} stroke={ema20.stroke()} />
@@ -249,7 +250,7 @@ class CandleStickChartWithDarkTheme extends React.Component {
         <Chart
           id={2}
           yExtents={d => d.volume}
-          height={100}
+          height={50}
           origin={(w, h) => [0, h - 475]}
         >
           <YAxis

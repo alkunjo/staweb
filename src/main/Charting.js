@@ -11,8 +11,8 @@ import { ApolloConsumer } from "react-apollo";
 import { gqlEmiten } from "../graphql";
 import moment from "moment";
 // import CandleStickChart from "../components/candlestick";
-// import CandleStickChart from "../components/candlestickmousepointer";
-import CandleStickChart from "../components/candlestickdark";
+import CandleStickChart from "../components/candlestickmousepointer";
+// import CandleStickChart from "../components/candlestickdark";
 import { eodParser } from "../helper";
 class Charting extends React.Component {
   constructor(props) {
@@ -71,6 +71,8 @@ class Charting extends React.Component {
 
         {emitens.map(x => (
           <Paper key={x.code} style={{ padding: "15px", marginTop: "10px" }}>
+            {console.log("unparsedEod: ", x.eods)}
+            {console.log("parsedEod: ", eodParser(x.eods))}
             <CandleStickChart code={x.code} data={eodParser(x.eods)} />
           </Paper>
         ))}

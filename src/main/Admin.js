@@ -35,13 +35,13 @@ class Admin extends React.Component {
   };
 
   componentDidMount() {
-    const { openLoader, match } = this.props;
+    const { openLoader } = this.props;
     openLoader();
-    this.setTitle(match);
+    this.setTitle("Dasboard");
   }
 
-  setTitle = match => {
-    debugger;
+  setTitle = str => {
+    this.setState({ title: str });
   };
 
   handleDrawerOpen = () => {
